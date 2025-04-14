@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@theme {
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Roboto", sans-serif;
+  --color-background: #f8f8f8;
+  --color-neutral5: #7c8181;
+  --color-neutral8: #2a2d2d;
+  --color-primary: #0f1010;
+  --color-secondary: #453fe1;
+}
+
+@layer utilities {
+  .btn {
+    position: relative;
+  }
+
+  .btn:hover >p{
+    color: white;
+  }
+
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-secondary);
+    border: 1px var(--color-secondary);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: -1;
+    transition: 0.4s;
+  }
+
+  .btn:hover::before {
+    width: 100%;
+  }
+}
