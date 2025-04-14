@@ -12,30 +12,44 @@ const QuestionsPage: React.FC = () => {
 
   const questions = data?.questions || [];
   const currentQuestion = questions[currentIndex];
+  const questionId = currentQuestion?.questionId;
 
-  const handleSelectWord = (word: string, questionId: string) => {
+  const handleSelectWord = (word: string, qid: string) => {
     setSelectedWords((prevState) => {
-      const currentSelections = prevState[questionId] || [];
+      const currentSelections = prevState[qid] || [];
       if (!currentSelections.includes(word)) {
         return {
           ...prevState,
-          [questionId]: [...currentSelections, word],
+          [qid]: [...currentSelections, word],
         };
       }
       return prevState;
     });
   };
 
+  const handleDeselectWord = (index: number) => {
+    if (!questionId) return;
+    setSelectedWords((prev) => {
+      const updated = [...(prev[questionId] || [])];
+      updated.splice(index, 1);
+      return { ...prev, [questionId]: updated };
+    });
+  };
+
   const isAnswerComplete =
     currentQuestion &&
-    selectedWords[currentQuestion.questionId]?.length ===
-      currentQuestion.correctAnswer.length;
+    selectedWords[questionId]?.length === currentQuestion.correctAnswer.length;
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     }
   };
+
+  const usedWords = selectedWords[questionId] || [];
+  const availableOptions = currentQuestion?.options.filter(
+    (opt) => !usedWords.includes(opt)
+  );
 
   useEffect(() => {
     console.log("Fetched Data:", data);
@@ -74,13 +88,12 @@ const QuestionsPage: React.FC = () => {
       <div className="mb-10 w-full max-w-3xl">
         <SentenceCard
           sentence={currentQuestion.question}
-          selectedWords={selectedWords[currentQuestion.questionId] || []}
+          selectedWords={selectedWords[questionId] || []}
+          onDeselect={handleDeselectWord}
         />
         <WordOptions
-          options={currentQuestion.options}
-          onSelect={(word) =>
-            handleSelectWord(word, currentQuestion.questionId)
-          }
+          options={availableOptions || []}
+          onSelect={(word) => handleSelectWord(word, questionId)}
           usedWords={selectedWords[currentQuestion.questionId] || []}
         />
       </div>
