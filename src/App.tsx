@@ -1,7 +1,8 @@
 import "./App.css";
 
 function App() {
-  return <>PROJECT START</>;
+  return <><p className="text-red-300">
+    PROJECT START</p></>;
 }
 
 export default App;
