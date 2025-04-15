@@ -1,54 +1,111 @@
-# React + TypeScript + Vite
+# 🧠 SenConstruct
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**SenConstruct** is an interactive sentence construction quiz tool designed for frontend internship evaluation. Users are presented with incomplete sentences and must fill in the blanks using selectable word options. The quiz is timed, scored, and provides detailed feedback on performance.
 
-Currently, two official plugins are available:
+This project is a monorepo that includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: A TypeScript React app powered by Vite.
+- **Backend**: A mock REST API powered by **JSON Server**.
 
-## Expanding the ESLint configuration
+The application is optimized for performance, styled using **Tailwind CSS**, and built with modern development practices in mind.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Motivation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This project was built to simulate real-world frontend problem-solving in a time-bound and UX-driven environment. The goal was to design a tool that is engaging, responsive, and scalable, while following modern best practices.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Why This Project?
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+It bridges the gap between traditional static quizzes and real-time interactive assessments. The application emphasizes user experience, performance, and developer ergonomics.
+
+## What Problem Does It Solve?
+
+It offers an intuitive platform to assess sentence construction skills with a real-time challenge. The feedback and scoring systems make it suitable for both learners and evaluators.
+
+## What Did I Learn?
+
+- TypeScript integration with React using Vite
+- State and timer management in React
+- Dynamic word selection logic
+- API integration with JSON Server
+- Tailwind CSS utility-first styling
+- Monorepo structure and workspace tooling
+
+---
+
+### 📁 Project Structure
+
+```plaintext
+root/
+  ├── backend/                # Backend folder with JSON Server
+  ├── frontend/               # Frontend React app built with Vite and TypeScript
+  ├── package.json            # Root package for managing workspaces
+  ├── package-lock.json       # Dependency lockfile
+  └── README.md               # This README fil
+
+---
+
+#### ⚙️ Tech Stack
+
+| Layer       | Technology                         |
+|-------------|------------------------------------|
+| Frontend    | React, Vite, TypeScript            |
+| Styling     | Tailwind CSS                       |
+| Backend     | JSON Server                        |
+| Monorepo    | npm Workspaces                     |
+| Tooling     | concurrently, ESLint               |
+
+---
+
+
+### 📦 Installation
+
+Install all project dependencies in sequence:
+
+```bash
+# Step 1: Install root and workspace dependencies
+npm install
+
+# Step 2: Navigate to backend and install its dependencies
+cd backend
+npm install
+cd ..
+
+# Step 3: Navigate to frontend and install its dependencies
+cd frontend
+npm install
+cd ..
+
+
+
+🔄 Start Development Server
+#Run the following command from the root of the project:
+# From root directory
+npm run dev
+
+#This will concurrently:
+
+## 🚀 Launch the frontend at: http://localhost:5173
+## 🔧 Launch the backend (JSON Server) at: http://localhost:5001
+
+---
+
+# 🧠 Features
+⏳ 30-second timer for each question to add time-based challenge.
+
+🎯 Scoring system with tracking of correct answers and results.
+
+🧩 Word selection & de-selection system to fill in sentence blanks.
+
+📊 Detailed result screen with feedback and corrections.
+
+⚡ Fast builds and hot module replacement (HMR) using Vite.
+
+🎨 Responsive design with Tailwind CSS for utility-first styling.
+
+✅ Fully typed with TypeScript for better development experience.
+
+
+
+
