@@ -62,22 +62,22 @@ const HomePage: React.FC = () => {
           </div>
         </section>
         <section className="flex justify-center space-x-10 h-[20%] items-start md:items-center">
-          <div className="border border-secondary rounded-[8px] w-30 h-10.5 flex justify-center items-center btn z-1  transition-transform duration-100 ease-out hover:scale-105">
+          <div className="border border-secondary rounded-[8px] w-30 h-10.5 flex justify-center items-center btn z-1 cursor-pointer transition-transform duration-100 ease-out  hover:scale-105">
             <button>
-              <p className="font-body font-medium text-[16px] text-secondary">
+              <p className="font-body font-medium text-[16px] text-secondary hover:text-white">
                 Back
               </p>
             </button>
           </div>
-          <div className="bg-secondary rounded-[8px] w-30 h-10.5 flex justify-center items-center transition-transform duration-100 ease-out hover:scale-105">
-            <Link to={"/questions"}>
+          <Link to={"/questions"}>
+            <div className="bg-secondary rounded-[8px] w-30 h-10.5 flex justify-center items-center cursor-pointer transition-transform duration-100 ease-out hover:scale-105">
               <button>
                 <p className="font-body font-medium text-[16px] text-white ">
                   Start
                 </p>
               </button>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </section>
       </div>
     </div>
