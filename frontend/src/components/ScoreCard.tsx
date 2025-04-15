@@ -49,7 +49,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
           label: "Wrong",
           color: "text-red-400",
           bg: "#FCEBEC",
-          shadow: "shadow-[0px_6px_80px_-49px_#e81b00]",
+          shadow: "shadow-[0px_6px_75px_-49px_#e81b00]",
         };
   };
 

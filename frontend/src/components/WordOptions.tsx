@@ -15,7 +15,7 @@ const WordOptions: React.FC<WordOptionProps> = ({ options, onSelect }) => {
             <button
               key={idx}
               onClick={() => onSelect(word)}
-              className={`w-[clamp(50px,20vw,100px)] h-[clamp(20px,5vw,45px)]  rounded-lg font-medium border border-[#BFC6C6] text-[#FFFFFF]
+              className={`w-fit h-fit p-1 rounded-lg font-medium border border-[#BFC6C6] text-[#FFFFFF]
               transition-all duration-150 ease-in-out hover:scale-105
               `}
             >
