@@ -6,30 +6,25 @@ interface WordOptionProps {
   usedWords: string[];
 }
 
-const WordOptions: React.FC<WordOptionProps> = ({
-  options,
-  onSelect,
-  usedWords,
-}) => {
+const WordOptions: React.FC<WordOptionProps> = ({ options, onSelect }) => {
   return (
-    <div className="flex justify-center flex-wrap gap-4 mt-6">
+    <div className="flex justify-center flex-wrap gap-2 md:gap-4 mt-6">
       {options.map((word, idx) => {
-        const isUsed = usedWords.includes(word);
         return (
-          <button
-            key={idx}
-            disabled={isUsed}
-            onClick={() => onSelect(word)}
-            className={`px-4 py-2 rounded-lg font-medium border border-gray-300 
+          <div>
+            <button
+              key={idx}
+              onClick={() => onSelect(word)}
+              className={`w-[clamp(50px,20vw,100px)] h-[clamp(20px,5vw,45px)]  rounded-lg font-medium border border-[#BFC6C6] text-[#FFFFFF]
               transition-all duration-150 ease-in-out hover:scale-105
-              ${
-                isUsed
-                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  : "bg-secondary text-white hover:bg-secondary/90"
-              }`}
-          >
-            {word}
-          </button>
+              `}
+            >
+              <p className="text-[#414343] text-[clamp(11px,1.3vw,15px)]">
+                {word}
+              </p>
+            </button>
+          </div>
+          
         );
       })}
     </div>
