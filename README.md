@@ -57,8 +57,7 @@ root/
 | Tooling     | concurrently, ESLint               |
 
 ---
-
-
+ 
 ### 📦 Installation
 
 Install all project dependencies in sequence:
@@ -106,6 +105,8 @@ npm run dev
 
 ✅ Fully typed with TypeScript for better development experience.
 
-
+####BACKEND
+-- Deployed backend on https://render.com/ 
+-- Leveraged Render to get the api endpoint for the data.
 
 
