@@ -22,7 +22,7 @@ const FeedBack: React.FC = () => {
     : 0;
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-24 bg-[#F6F9F9]">
+    <div className="min-h-screen flex flex-col items-center py-24 bg-[#F8F8F8]">
       <div className="flex flex-col items-center gap-y-6 md:gap-y-14">
         <div className="flex flex-col items-center text-center gap-6">
           <div className="flex justify-center w-[clamp(200px,40vw,300px)]">
@@ -43,7 +43,7 @@ const FeedBack: React.FC = () => {
           </div>
         </Link>
       </div>
-      <div className={`mt-10 grid grid-rows-${questions.length} grid-cols-1 gap-10 md:gap-22`}>
+      <div className={`mt-10 grid grid-rows-${questions.length} grid-cols-1 gap-16 sm:gap-18 md:gap-22`}>
         {questions.map((q: Question, index:number) => (
           <ScoreCard
             key={q.questionId}

@@ -35,7 +35,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
         label: "Not Answered",
         color: "text-yellow-400",
         bg: "text-yellow-200",
-        shadow: "shadow-[7px_-5px_100px_-49px_#fbbf24]",
+        shadow: "shadow-[7px_-5px_80px_-49px_#fbbf24]",
       };
 
     return isCorrect
@@ -43,13 +43,13 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
           label: "Correct",
           color: "text-green-400",
           bg: "#EEFBEF",
-          shadow: "shadow-[7px_-5px_100px_-49px_rgba(34,_197,_94,_0.5)]",
+          shadow: "shadow-[7px_-5px_80px_-49px_rgba(34,_197,_94,_0.5)]",
         }
       : {
           label: "Wrong",
           color: "text-red-400",
           bg: "#FCEBEC",
-          shadow: "shadow-[0px_6px_100px_-49px_#e81b00]",
+          shadow: "shadow-[0px_6px_80px_-49px_#e81b00]",
         };
   };
 
@@ -64,10 +64,10 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
 
   return (
     <section
-      className={`w-[clamp(350px,60vw,800px)] h-[clamp(250px,35vw,350px)]  ${shadow}  `}
+      className={`w-[clamp(350px,60vw,800px)] border border-gray-200 h-fit rounded-2xl overflow-hidden ${shadow}`}
     >
-      <div className="bg-[#FFFFFF] h-1/2 gap-y-2">
-        <div className="flex justify-between p-2 md:p-4">
+      <div className="bg-[#FFFFFF] h-fit">
+        <div className="flex justify-between pt-2 px-2 md:px-4">
           <div className="bg-[#F0F0F0] text-black font-body font-medium text-[clamp(10px,1.2vw,14px)] rounded-lg p-1">
             Prompt
           </div>
@@ -82,9 +82,9 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
           </p>
         </div>
       </div>
-      <div className="h-1/2 border border-[#ebf2f2ce] bg-[#F6F9F9] p-2">
-        <div className="flex gap-x-3 md:gap-x-5 items-center">
-          <div className=" text-[#616464] font-body font-medium text-[clamp(11px,1.3vw,15px)] py-4 px-3 md:px-5">
+      <div className="h-fit bg-[#F6F9F9] px-2 pb-4">
+        <div className="flex gap-x-3 items-center pt-4">
+          <div className=" text-[#616464] font-body font-medium text-[clamp(11px,1.3vw,15px)] px-3 md:px-5">
             Your Response
           </div>
           <p
@@ -94,7 +94,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
           </p>
         </div>
         <div>
-          <p className="font-body text-neutral8 font-normal text-[clamp(14px,2vw,18px)] p-3 md:p-5">
+          <p className="font-body text-neutral8 font-normal text-[clamp(14px,2vw,18px)] px-3 pt-4 md:px-5">
             {userSentence}
           </p>
         </div>
