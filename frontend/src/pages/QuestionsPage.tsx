@@ -106,8 +106,8 @@ const QuestionsPage: React.FC = () => {
           />
         </div>
 
-        <div className="flex-grow flex flex-col justify-between w-full">
-          <div className="my-auto">
+        <div className="flex-grow flex flex-col justify-around w-full">
+          <div className="">
             <SentenceCard
               sentence={currentQuestion.question}
               selectedWords={selectedWords[questionId] || []}
@@ -123,6 +123,7 @@ const QuestionsPage: React.FC = () => {
           <div className="flex justify-end items-center">
             <button
               onClick={handleNext}
+              disabled={!isAnswerComplete}
               className={`mt-2 px-4 py-2 rounded-lg flex items-center justify-center transition ${
                 isAnswerComplete
                   ? "bg-secondary text-white"
