@@ -2,7 +2,9 @@ import { ApiResponse } from "../types/apiResponse";
 
 export const fetchQuestions = async (): Promise<ApiResponse> => {
   try {
-    const response = await fetch("http://localhost:5001/data");
+    const response = await fetch(
+      "https://sentence-constructor-buf2.onrender.com/data"
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch the questions");
