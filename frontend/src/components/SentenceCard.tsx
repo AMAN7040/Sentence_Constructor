@@ -14,9 +14,9 @@ const SentenceCard: React.FC<SentenceCardProps> = ({
   const parts = sentence.split("_____________");
 
   return (
-    <>
+    <div className="flex flex-col justify-between">
       <p
-        className="font-body font-medium text-[clamp(15px,2vw,22px)] text-center text-[#616464] mb-3">
+        className="font-body font-medium text-[clamp(15px,2vw,22px)] text-center text-[#616464] mb-4">
         Select the missing words in the correct order
       </p>
       <p className="font-body font-medium text-[clamp(16px,2.5vw,24px)] text-center tracking-normal leading-4 md:leading-8 lg:leading-10 sm:tracking-wide md:tracking-widest flex flex-wrap justify-center gap-y-2">
@@ -42,7 +42,7 @@ const SentenceCard: React.FC<SentenceCardProps> = ({
           </React.Fragment>
         ))}
       </p>
-    </>
+    </div>
   );
 };
 
