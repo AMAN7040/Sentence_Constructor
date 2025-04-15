@@ -16,8 +16,7 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ score, total }) => {
   const strokeDashoffset = circumference - (percent / 100) * circumference;
 
   return (
-    <div
-      className="relative size-[clamp(100px,20vw,200px)]">
+    <div className="relative size-[clamp(100px,20vw,200px)]">
       <svg
         viewBox={`0 0 ${baseSize} ${baseSize}`}
         className="w-full h-full transform -rotate-90"
@@ -44,13 +43,15 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ score, total }) => {
         />
       </svg>
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-green-800">
+      <div
+        className={`absolute inset-0 flex flex-col items-center justify-center ${
+          percent < 30 ? "text-red-500" : "text-green-800"
+        }`}
+      >
         <span className="text-[clamp(20px,4vw,32px)]">
           {Math.round(percent)}
         </span>
-        <span className="text-[clamp(10px,2vw,18px)]">
-          Overall Score
-        </span>
+        <span className="text-[clamp(10px,2vw,18px)]">Overall Score</span>
       </div>
     </div>
   );
