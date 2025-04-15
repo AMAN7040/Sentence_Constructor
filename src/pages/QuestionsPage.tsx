@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useQuestions } from "../hooks/useQuestions";
 import WordOptions from "../components/WordOptions";
 import SentenceCard from "../components/SentenceCard";
+import QuestionTimer from "../components/QuestionTimer";
+import ProgressTracker from "../components/ProgressTracker";
 
 const QuestionsPage: React.FC = () => {
   const { data, loading, error } = useQuestions();
   const [selectedWords, setSelectedWords] = useState<Record<string, string[]>>(
     {}
   );
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [timerResetKey, setTimerResetKey] = useState<number>(0);
 
   const questions = data?.questions || [];
   const currentQuestion = questions[currentIndex];
@@ -51,9 +54,18 @@ const QuestionsPage: React.FC = () => {
     (opt) => !usedWords.includes(opt)
   );
 
+  const handleTimeUp = () => {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+      setTimerResetKey((prev) => prev + 1);
+    } else {
+      console.log("Quiz completed by timeout");
+    }
+  };
+
   useEffect(() => {
-    console.log("Fetched Data:", data);
-  }, [data]);
+    setTimerResetKey((prev) => prev + 1);
+  }, [currentIndex]);
 
   if (loading) {
     return (
@@ -80,32 +92,61 @@ const QuestionsPage: React.FC = () => {
   }
 
   return (
-    <div className="bg-background min-h-screen flex flex-col items-center justify-center px-4 py-10">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-primary">
-        Complete the Sentence
-      </h2>
+    <div className="bg-[#F8F8F8] flex justify-center items-center min-w-screen min-h-screen">
+      <div className="bg-white flex flex-col px-4 py-6 rounded-lg shadow-md w-[clamp(350px,70vw,975px)] h-[clamp(500px,70vw,650px)]">
+        <div className="flex flex-col w-full my-0 sm:my-2 md:my-6">
+          <QuestionTimer
+            duration={30}
+            onTimeUp={handleTimeUp}
+            resetTrigger={timerResetKey}
+          />
+          <ProgressTracker
+            currentStep={currentIndex + 1}
+            totalSteps={questions.length}
+          />
+        </div>
 
-      <div className="mb-10 w-full max-w-3xl">
-        <SentenceCard
-          sentence={currentQuestion.question}
-          selectedWords={selectedWords[questionId] || []}
-          onDeselect={handleDeselectWord}
-        />
-        <WordOptions
-          options={availableOptions || []}
-          onSelect={(word) => handleSelectWord(word, questionId)}
-          usedWords={selectedWords[currentQuestion.questionId] || []}
-        />
+        <div className="flex-grow flex flex-col justify-between w-full">
+          <div className="my-auto">
+            <SentenceCard
+              sentence={currentQuestion.question}
+              selectedWords={selectedWords[questionId] || []}
+              onDeselect={handleDeselectWord}
+            />
+            <WordOptions
+              options={availableOptions || []}
+              onSelect={(word) => handleSelectWord(word, questionId)}
+              usedWords={selectedWords[currentQuestion.questionId] || []}
+            />
+          </div>
+
+          <div className="flex justify-end items-center">
+            <button
+              onClick={handleNext}
+              className={`mt-2 px-4 py-2 rounded-lg flex items-center justify-center transition ${
+                isAnswerComplete
+                  ? "bg-secondary text-white"
+                  : "bg-white border border-neutral5 text-neutral5"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
-
-      {isAnswerComplete && (
-        <button
-          onClick={handleNext}
-          className="mt-4 px-6 py-2 bg-primary text-white rounded-xl hover:bg-primary/90 transition"
-        >
-          Next
-        </button>
-      )}
     </div>
   );
 };
