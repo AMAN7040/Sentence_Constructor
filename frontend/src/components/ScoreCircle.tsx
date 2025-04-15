@@ -5,8 +5,8 @@ type ScoreCircleProps = {
   total: number;
 };
 
-const ScoreCircle: React.FC<ScoreCircleProps> = ({  total }) => {
-  const percent = Math.min((7 / total) * 100);
+const ScoreCircle: React.FC<ScoreCircleProps> = ({ score, total }) => {
+  const percent = Math.min((score / total) * 100, 100);
 
   const baseSize = 100;
   const stroke = 6;
