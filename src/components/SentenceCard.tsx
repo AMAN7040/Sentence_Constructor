@@ -14,24 +14,35 @@ const SentenceCard: React.FC<SentenceCardProps> = ({
   const parts = sentence.split("_____________");
 
   return (
-    <p className="text-xl font-medium text-center leading-relaxed flex flex-wrap justify-center">
-      {parts.map((part, index) => (
-        <React.Fragment key={index}>
-          <span>{part}</span>
-          {index < selectedWords.length ? (
-            <button
-              type="button"
-              onClick={() => onDeselect?.(index)}
-              className="mx-1 underline text-primary font-semibold hover:text-red-500 transition"
-            >
-              {selectedWords[index]}
-            </button>
-          ) : index < parts.length - 1 ? (
-            <span className="mx-1 text-gray-400">__________</span>
-          ) : null}
-        </React.Fragment>
-      ))}
-    </p>
+    <>
+      <p
+        className="font-body font-medium text-[clamp(15px,2vw,22px)] text-center text-[#616464] mb-3">
+        Select the missing words in the correct order
+      </p>
+      <p className="font-body font-medium text-[clamp(16px,2.5vw,24px)] text-center tracking-normal leading-4 md:leading-8 lg:leading-10 sm:tracking-wide md:tracking-widest flex flex-wrap justify-center gap-y-2">
+        {parts.map((part, index) => (
+          <React.Fragment key={index}>
+            <span className="whitespace-pre-wrap">{part}</span>
+
+            {index < parts.length - 1 && (
+              <span className="relative inline-flex items-center justify-center mx-1 min-w-[85px] max-w-[100px] border-b-2 border-black h-[clamp(24px,5vw,36px)]">
+                {selectedWords[index] && (
+                  <button
+                    type="button"
+                    onClick={() => onDeselect?.(index)}
+                    className="absolute inset-0 -top-0.5 flex items-center justify-center w-full h-full bg-white border border-[#BFC6C6] rounded-lg px-1"
+                  >
+                    <p className="text-[#414343] text-[clamp(10px,2.5vw,13px)] font-semibold truncate">
+                      {selectedWords[index]}
+                    </p>
+                  </button>
+                )}
+              </span>
+            )}
+          </React.Fragment>
+        ))}
+      </p>
+    </>
   );
 };
 
