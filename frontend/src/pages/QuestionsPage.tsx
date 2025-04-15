@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuestions } from "../hooks/useQuestions";
 import WordOptions from "../components/WordOptions";
 import SentenceCard from "../components/SentenceCard";
 import QuestionTimer from "../components/QuestionTimer";
 import ProgressTracker from "../components/ProgressTracker";
+import { useNavigate } from "react-router-dom";
 
 const QuestionsPage: React.FC = () => {
   const { data, loading, error } = useQuestions();
+  const navigate = useNavigate();
   const [selectedWords, setSelectedWords] = useState<Record<string, string[]>>(
     {}
   );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [timerResetKey, setTimerResetKey] = useState<number>(0);
 
   const questions = data?.questions || [];
   const currentQuestion = questions[currentIndex];
@@ -46,6 +47,13 @@ const QuestionsPage: React.FC = () => {
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
+    } else {
+      navigate("/feedback", {
+        state: {
+          selectedWords,
+          questions,
+        },
+      });
     }
   };
 
@@ -57,15 +65,15 @@ const QuestionsPage: React.FC = () => {
   const handleTimeUp = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
-      setTimerResetKey((prev) => prev + 1);
     } else {
-      console.log("Quiz completed by timeout");
+      navigate("/feedback", {
+        state: {
+          selectedWords,
+          questions,
+        },
+      });
     }
   };
-
-  useEffect(() => {
-    setTimerResetKey((prev) => prev + 1);
-  }, [currentIndex]);
 
   if (loading) {
     return (
@@ -98,7 +106,7 @@ const QuestionsPage: React.FC = () => {
           <QuestionTimer
             duration={30}
             onTimeUp={handleTimeUp}
-            resetTrigger={timerResetKey}
+            questionId={questionId}
           />
           <ProgressTracker
             currentStep={currentIndex + 1}
