@@ -1,6 +1,6 @@
 # 🧠 SenConstruct
 
-**SenConstruct** is an interactive sentence construction quiz tool designed for frontend internship evaluation. Users are presented with incomplete sentences and must fill in the blanks using selectable word options. The quiz is timed, scored, and provides detailed feedback on performance.
+**SenConstruct** is an interactive sentence construction quiz tool designed. Users are presented with incomplete sentences and must fill in the blanks using selectable word options. The quiz is timed, scored, and provides detailed feedback on performance.
 
 This project is a monorepo that includes:
 
